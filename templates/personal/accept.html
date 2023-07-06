@@ -1,0 +1,6 @@
+{% extends 'ads/default.html' %}
+
+{% block content %}
+    <h2 class="text_center">{{message}} "{{response}}"</h2>
+    <button><a href="{% url 'responses' %}">Назад</a></button>
+{% endblock%}

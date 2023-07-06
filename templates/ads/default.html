@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+      <nav>
+        <a class="link" href="/ads/">Объявления</a>
+        <a class="link" href="{% url 'ad_create' %}">Создать объявление</a>
+        <a class="link" href="/accounts/">Аккаунт</a>
+      </nav>
+    </header>
+
+    <!-- Page content-->
+    <div class="content">
+        <div class="">
+             <div class="">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

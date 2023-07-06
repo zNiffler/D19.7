@@ -1,0 +1,27 @@
+{% extends 'ads/default.html' %}
+
+{% block title %}
+{{ ad.title }}
+{% endblock title %}
+
+{% block content %}
+<h3>{{ ad.title }}</h3>
+<h5>{{ ad.date_create|date:'j M Y' }} | Автор:{{ ad.author }}</h5>
+<hr>
+<h6>Категория: {{ ad.category }}</h6>
+<hr>
+<h5>{{ ad.text }}</h5>
+<hr>
+<img src="{{ ad.content.url }}" alt="{{ ad.title }}">
+<a class="nav-link" href="{{ ad.id }}/update ">Изменить</a>
+<a class="nav-link" href="{{ ad.id }}/delete ">Удалить</a>
+<hr>
+<a class="nav-link" href="{{ ad.id }}/res_create ">Оставить отзыв</a>
+<h6>Отзывы:</h6>
+{% for res in response %}
+{% if res.accept %}
+<h6>Автор: {{ res.author }} | Дата и время: {{ res.date_create|date:'j.m.y H:i' }}</h6>
+<h6>{{ res.text }}</h6>
+{% endif %}
+{% endfor %}
+{% endblock %}

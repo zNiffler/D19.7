@@ -1,0 +1,41 @@
+{% extends 'ads/default.html' %}
+
+{% block title %}
+Объявления
+{% endblock title %}
+
+{% block content %}
+    <h2>Объявлений всего: {{ ads|length }}</h2>
+    {% if ads %}
+        {% for ad in ads %}
+            <div class="block-ad">
+            <a class="nav-link" href="/ads/{{ ad.id }}"><h3>{{ ad.title }}</h3></a>
+            <h5>Категория: {{ ad.category }} </h5>
+            <time>{{ ad.date_create|date:'j M Y' }}</time>
+            <h5>{{ ad.text|truncatechars:20 }}</h5>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4>Объявлений нет!</h4>
+    {% endif %}
+
+
+    {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+    {% endif %}
+
+    {{ page_obj.number }}
+
+    {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+
+{% endblock %}

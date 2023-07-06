@@ -1,0 +1,11 @@
+{% extends 'ads/default.html' %}
+
+{% block content %}
+<h>Оставить отклик</h>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Отправить" />
+</form>
+{% endblock content %}

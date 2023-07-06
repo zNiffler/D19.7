@@ -1,0 +1,9 @@
+{% extends 'ads/default.html' %}
+
+{% block content %}
+<h2>{{ request.user.username }}</h2>
+<hr>
+
+<button> <a href="logout/">Выйти</a> </button>
+<button> <a href="responses/">Отзывы</a> </button>
+{% endblock %}

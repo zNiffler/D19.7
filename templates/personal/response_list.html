@@ -1,0 +1,30 @@
+{% extends 'ads/default.html' %}
+
+{% block content %}
+
+<h1>Отзывы</h1>
+<form action="" method="get">
+    {{ filter.form }}
+<!--    {{ filterset.form.as_p }}-->
+    <input type="submit" value="Найти"/>
+</form>
+<ul>
+    {% for response in responses %}
+        <h6>Автор: {{ response.author }}</h6>
+        <time>Дата и время: {{ response.date_create|date:'j.m.y H:i' }}</time>
+        <p>Отзыв: {{ response.text }}</p>
+        <h6>Объявление: {{ response.ad.title }}</h6>
+        {% if response.accept %}
+            <h6>Отзыв принят</h6>
+        {% else %}
+            <h6>Отзыв не принят</h6>
+            <button><a href="{% url 'res_accept' response.id %}">Принять отзыв</a></button>
+        {% endif %}
+        <a class="nav-link" href="{{ response.id }}/delete ">Удалить</a>
+        <hr>
+    {% empty %}
+        <hr>
+        <li>Отзывов нет.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
